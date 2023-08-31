@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+       <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Correo:</ion-label>
+        <ion-input [(ngModel)]="correito" type="text" placeholder="Correo@correo.com"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Contraseña:</ion-label>
+        <ion-input [(ngModel)]="password" type="password"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="logear()" expand="default">Acceder</ion-button>
+      <ion-button (click)="registrarse()" expand="default">Registrarse</ion-button>
+      <ion-button (click)="recuperar()"  fill="clear">¿No puedes ingresar?</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>
