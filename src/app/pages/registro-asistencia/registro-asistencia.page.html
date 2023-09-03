@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Registro de Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <div class="dateTime">
+      <h3 class="fechaAsistencia">Fecha Asistencia: </h3>
+    <ion-datetime-button id="btnDate" datetime="datetime" disabled></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+  <div class="dateTime">
+    <h3>Fecha Asistencia: </h3>
+    <ion-datetime-button id="btnDate" datetime="datetime" disabled> </ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        
+        <ion-datetime id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+  <div class="dateTime">
+    <h3>Fecha Asistencia: </h3>
+    <ion-datetime-button id="btnDate" datetime="datetime" disabled> </ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+ 
+</ion-list>
+<div class="btnVolver">
+<ion-button class="btnVolverr" (click)="volver()"> volver </ion-button>
+</div>
+</ion-content>
+
+

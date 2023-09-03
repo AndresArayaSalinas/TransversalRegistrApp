@@ -1,0 +1,35 @@
+.avatar{
+    display: flex;
+    justify-content: center;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+.info{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 1%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.cardPerfil{
+    display: flex;
+    justify-content: center;
+
+}
+
+.btnReestablecerPass{
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnVolver{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}

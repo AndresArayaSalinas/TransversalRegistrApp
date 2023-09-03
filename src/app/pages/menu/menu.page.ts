@@ -4,6 +4,7 @@ import type { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
 import { Menu } from 'src/app/models/menu';
 import { HelperService } from 'src/app/services/helper.service';
+import { RegistroAsistenciaPage } from '../registro-asistencia/registro-asistencia.page';
 
 @Component({
   selector: 'app-menu',
@@ -34,22 +35,14 @@ export class MenuPage implements OnInit {
           id:2,
           titulo:"Mi Asistencia",
           icono:"calendar-outline",
-          url:"/menu"
+          url:"/registro-asistencia"
         },
         {
           id:3,
           titulo:"Mi Perfil",
           icono:"person-outline",
           url:"/perfil"
-        },
-        
-        {
-          id:4,
-          titulo:"Mi Asistencia",
-          icono:"",
-          url:"/perfil"
-        }
-        
+        }              
       )
     }
 
@@ -77,4 +70,9 @@ export class MenuPage implements OnInit {
     
   }
 
+  perfil(){
+    this.router.navigateByUrl("registro-asistencia")
+  }
+
+  
 }
