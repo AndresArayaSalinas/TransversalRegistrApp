@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage implements OnInit {
-
+  loading:boolean = true;
   constructor() { }
 
-  ngOnInit() {
+  cargandoRegistro = () => {
+    this.loading = false;
   }
 
+ngOnInit() {
+ 
+  setTimeout(this.cargandoRegistro, 2000);
+}
 }

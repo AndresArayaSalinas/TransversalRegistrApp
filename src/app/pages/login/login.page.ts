@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AnimationController, IonCard } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,9 @@ export class LoginPage implements OnInit {
   correito:string = "";
   password:string ="";
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,
+              private animationCtrl: AnimationController
+              ) { }
 
   ngOnInit() {
   }

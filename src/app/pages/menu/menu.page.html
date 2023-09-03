@@ -3,7 +3,7 @@
     <ion-button (click)="deslog()" slot="end">
       <ion-icon name="log-out-outline"></ion-icon>
     </ion-button>
-    <ion-title>menu</ion-title>
+    <ion-title>RegistrApp!</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,17 +17,33 @@
     
   </div>
  
-  <ion-card>
+  <ion-card >
     <ion-card-header>
-      <ion-card-title><h1>Bienvenido al Menu Principal.</h1></ion-card-title>
+      <ion-card-title><h4>Bienvenido, al Menu Principal.</h4></ion-card-title>
       
     </ion-card-header>
   
-    <ion-card-content>
-      <ion-button expand="full">Escanear QR.</ion-button>
-      <ion-button expand="full">Asistencia</ion-button>
-      <ion-button expand="full">Mi Perfil</ion-button>      
-    </ion-card-content>
-  </ion-card>
-  <ion-button color="danger" expand="full">Cerrar Sesión</ion-button>
-</ion-content>
+    <ng-container *ngIf="!loading">
+      <ng-container *ngFor="let menu of arrayMenu">
+        <ion-card class="menuEnabled" [routerLink]="menu.url" *ngIf="!menu.disabled">
+          <div class="box">
+            <ion-icon size="large" [name]="menu.icono"></ion-icon>
+            <h3>{{menu.titulo}}</h3>
+          </div>
+        </ion-card> 
+
+         <ion-card class="menuDisabled" *ngIf="menu.disabled">
+          <div class="box">
+            <ion-icon size="large" [name]="menu.icono"></ion-icon>
+            <h3>{{menu.titulo}}</h3>
+          </div>
+        </ion-card> 
+      </ng-container>
+    </ng-container>
+
+
+      <ng-container *ngIf="loading"> 
+        <div class="boxSkeleton" *ngFor="let item of [1,2,3,4]">
+          <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>
+        </div>
+      </ng-container>
