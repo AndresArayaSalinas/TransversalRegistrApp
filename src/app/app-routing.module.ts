@@ -34,21 +34,12 @@ const routes: Routes = [
   {
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
-<<<<<<< HEAD
-  },  {
-    path: 'perfil',
-    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
-  },
-  {
-    path: 'registro-asistencia',
-    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
-  },
-=======
   },
   {
     path: 'restablecer',
     loadChildren: () => import('./pages/restablecer/restablecer.module').then( m => m.RestablecerPageModule)
-  },  {
+  },
+  {
     path: 'registro-asistencia',
     loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   },
@@ -56,7 +47,15 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
->>>>>>> c768f46dde1e485ea87f9c357aa4610ee511f062
+  {
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./pages/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
+  },
+  {
+    path: ':num/asistencia',
+    loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
+  },
+  
 
 ];
 

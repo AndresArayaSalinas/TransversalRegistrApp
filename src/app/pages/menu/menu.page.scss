@@ -6,7 +6,7 @@
 
 
 .menuEnabled{
-    background-color: rgb(4, 129, 148);
+    background-color: rgb(65, 0, 61);
     color: white;
 }
 
@@ -29,3 +29,21 @@
     
 }
 
+ion-card {
+    color: white;
+    opacity: 1;
+    background: rgb(31, 38, 41);
+    margin: 10px;
+  
+    --background: rgb(0, 89, 255);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    ion-card {
+      --background: rgb(0, 255, 13);
+    }
+  }
+
+p{
+    color: white;
+}

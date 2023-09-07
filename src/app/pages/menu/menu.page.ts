@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import type { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
@@ -12,6 +12,7 @@ import { RegistroAsistenciaPage } from '../registro-asistencia/registro-asistenc
   styleUrls: ['./menu.page.scss'],
 })
 export class MenuPage implements OnInit {
+  @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
   private animation!: Animation;
 
   loading:boolean = true;
@@ -53,6 +54,12 @@ export class MenuPage implements OnInit {
   ngOnInit() {
     this.cargaMenu();
     setTimeout(this.cargandoMenu, 2000);
+    
+  }
+
+  ngOnDestroy(): void {
+    console.log("Destruyendo la vista");
+    this.stop();
   }
 
   async deslog(){
@@ -72,6 +79,30 @@ export class MenuPage implements OnInit {
 
   perfil(){
     this.router.navigateByUrl("registro-asistencia")
+  }
+
+  
+  ngAfterViewInit() {
+    this.animation = this.animationCtrl
+      .create()
+      .addElement(document.querySelectorAll("ion-card"))
+      .duration(800)
+      .iterations(Infinity)
+      .direction('alternate')
+      .fromTo('background', 'red', 'blue');
+      
+  }
+
+  play() {
+    this.animation.play();
+  }
+
+  pause() {
+    this.animation.pause();
+  }
+
+  stop() {
+    this.animation.stop();
   }
 
   

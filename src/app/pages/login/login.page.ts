@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
       return;
     }
     
-    if(this.correito == "asd" && this.password=="111"){
+    if(this.correito == "pgy4121-002d" && this.password=="pgy4121-002d"){
       this.router.navigateByUrl("menu");
     }else{
       alert("Datos ingresados no validos.")

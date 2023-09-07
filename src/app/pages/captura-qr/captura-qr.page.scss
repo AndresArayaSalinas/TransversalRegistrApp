@@ -7,3 +7,22 @@
 .img-qr{
     margin-top: 5%;
 }
+
+
+.cardigan {
+    color: white;
+    opacity: 0.5;
+    background: rgb(1, 255, 22);
+    margin: 10px;
+  
+    --background: red;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    cardigan {
+      --background: rgb(0, 255, 13);
+    }
+  }
+
+
+

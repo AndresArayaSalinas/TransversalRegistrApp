@@ -1,11 +1,13 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
 <ng-container>
   <div class="avatar">
     <ion-avatar>
@@ -21,15 +23,15 @@
         Bienvenido (Usuario)
       </ion-title>
       
-        <ion-input class="info" placeholder=" Armando">
+        <ion-input disabled="true" class="info" placeholder=" Armando">
           Nombre: 
         </ion-input>
 
-        <ion-input class="info"  placeholder=" Casas">
+        <ion-input disabled="true" class="info"  placeholder=" Casas">
           Apellido: 
         </ion-input>
 
-        <ion-input class="info"  placeholder=" Estudiante">
+        <ion-input disabled="true" class="info"  placeholder=" Estudiante">
           Rol: 
         </ion-input>
       
@@ -42,20 +44,14 @@
   </div>
 </ng-container>
 <div class="btnReestablecerPass">
-  <ion-button class="btnReestablecer" shape="round">
-    Reestablecer Contraseña
+  <ion-button class="btnReestablecer" (click)="restablecer()" shape="round">
+    Actualizar Contraseña
   </ion-button>
-<<<<<<< HEAD
-</div>
-
-=======
   
 </div>
 
-<div class="btnVolver">
-  <ion-button class="btnVolverr" (click)="volver()"> volver </ion-button>
-  </div>
-
->>>>>>> c768f46dde1e485ea87f9c357aa4610ee511f062
 
 </ion-content>
+
+
+

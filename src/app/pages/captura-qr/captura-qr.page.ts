@@ -1,20 +1,32 @@
-import { Component, OnInit } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component, ElementRef, ViewChildren, ViewChild } from '@angular/core';
+import type { QueryList } from '@angular/core';
+import type { Animation } from '@ionic/angular';
+import { AnimationController, IonCard } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-captura-qr',
   templateUrl: './captura-qr.page.html',
   styleUrls: ['./captura-qr.page.scss'],
 })
-export class CapturaQrPage implements OnInit {
+export class CapturaQrPage {
+  @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
 
-  constructor(private router:Router) { }
+  private animation!: Animation;
 
-  ngOnInit() {
-  }
+  constructor(private animationCtrl: AnimationController, private router:Router) {}
+
 
   aceptarQr(){
-    this.router.navigateByUrl("asistencia");
+    var parametroQR = "QR123456";
+    this.router.navigateByUrl(parametroQR+"/asistencia");
   }
 
+  
+
+  
 }
+
+
+
+ 
