@@ -1,12 +1,27 @@
 .dateTime{
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     justify-content: center;
     margin-top: 5%;
+=======
+    justify-content: start;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: rgb(138, 255, 255);
+>>>>>>> c768f46dde1e485ea87f9c357aa4610ee511f062
 }
 
 .btnVolver{
     display: flex;
     justify-content: center;
     margin-top: 5%;
+<<<<<<< HEAD
 }
+=======
+}
+
+#btnDate{
+    margin: 2%;
+}
+>>>>>>> c768f46dde1e485ea87f9c357aa4610ee511f062

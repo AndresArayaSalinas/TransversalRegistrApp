@@ -1,10 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    
     <ion-title>registro</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,23 +13,56 @@
       <ion-title size="large">registro</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-card>
-  <ion-card-content>
-    <ion-label>Nombre:</ion-label>
-    <ion-input type="text"></ion-input>
-    <ion-label>Apellido:</ion-label>
-    <ion-input type="text"></ion-input>
-    <ion-label>Correo:</ion-label>
-    <ion-input type="text"></ion-input>
-    <ion-label>Contraseña:</ion-label>
-    <ion-input type="password"></ion-input>
-  </ion-card-content>
-  </ion-card>
+  <ng-container *ngIf="loading">
+    <div class="boxSkeleton" *ngFor="let item of [1]">
+      <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <ion-card>
+      <ion-card-content>
+        <ion-list>
+          
+            <ion-item>
+              <ion-input label="Nombre:" placeholder="Armando"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input label="Apellido Paterno:" placeholder="Casas"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input label="Apellido Materno:" placeholder="Rojas"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <label>Rol:</label>
+              <ion-select>
+                <ion-select-option value="docente">Docente</ion-select-option>
+                <ion-select-option value="estudiante">Estudiante</ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-input label="Contraseña" type="password" value="password"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input label="Correo:" type="email" placeholder="correito@correo.com"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input label="Telefono" type="tel" placeholder="22-7721231"></ion-input>
+            </ion-item>
+          
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
   <ion-row>
     <ion-col>
       <ion-button expand="full">Registrarse</ion-button>
     </ion-col>
   </ion-row>
-
 
 </ion-content>

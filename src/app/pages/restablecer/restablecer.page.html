@@ -16,18 +16,15 @@
 
   <ion-card>
     <ion-card-content>
-      <h1>¡Recupera tu cuenta!</h1>
-      <p>Introduce tu correo para recuperar tu cuenta en RegistrApp.</p>
-      <ion-item>
-        <ion-label position="floating">Correo</ion-label>
-        <ion-input [(ngModel)]="correito" type="email" placeholder="ejemplo@correo.com"></ion-input>
-      </ion-item>      
+      <h1>¡Revisa tu correo!</h1>
+      <p>Enviamos un correo a <strong>correo@correo.com</strong> con instrucciones para restablecer tu contraseña. Si no ves el correo en unos minutos, revisa tu carpeta de spam o solicita que te lo reenviemos.</p>
     </ion-card-content>
   </ion-card>
   
   <ion-row>
     <ion-col class="ion-text-center">
-      <ion-button (click)="restablecer()" expand="full">Recuperar</ion-button>
+      <ion-button  expand="full">Reenviar correo</ion-button>
+      <ion-button (click)="login()" expand="full" >Volver al inicio</ion-button>
     </ion-col>
   </ion-row>
 </ion-content>
