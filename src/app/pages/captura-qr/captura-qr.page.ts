@@ -4,6 +4,7 @@ import type { Animation } from '@ionic/angular';
 import { AnimationController, IonCard } from '@ionic/angular';
 import { Router } from '@angular/router';
 
+ 
 @Component({
   selector: 'app-captura-qr',
   templateUrl: './captura-qr.page.html',

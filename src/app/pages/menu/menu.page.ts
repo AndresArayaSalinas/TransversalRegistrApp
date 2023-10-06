@@ -5,6 +5,7 @@ import { AnimationController, IonCard } from '@ionic/angular';
 import { Menu } from 'src/app/models/menu';
 import { HelperService } from 'src/app/services/helper.service';
 import { RegistroAsistenciaPage } from '../registro-asistencia/registro-asistencia.page';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-menu',
@@ -19,7 +20,8 @@ export class MenuPage implements OnInit {
   arrayMenu:Menu[]=[];
   constructor(private router:Router,
               private helper:HelperService,
-              private animationCtrl: AnimationController
+              private animationCtrl: AnimationController,
+              private auth:AngularFireAuth
     ) { }
 
     cargaMenu(){
@@ -106,4 +108,14 @@ export class MenuPage implements OnInit {
   }
 
   
+  async logOut(){
+    //
+
+    var corfirmar = await this.helper.showConfirm("Desea cerrar la sesión actual?","Confirmar","Cancelar")
+    if (corfirmar == true) {
+      await this.auth.signOut();
+      await this.router.navigateByUrl("login");
+    }
+  }
+
 }

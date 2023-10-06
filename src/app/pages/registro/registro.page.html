@@ -44,25 +44,50 @@
             </ion-item>
 
             <ion-item>
-              <ion-input label="Contraseña" type="password" value="password"></ion-input>
+              <ion-label>Contraseña:</ion-label>
+              <ion-input [(ngModel)]="contrasena" type="password"></ion-input>
             </ion-item>
 
             <ion-item>
-              <ion-input label="Correo:" type="email" placeholder="correito@correo.com"></ion-input>
+              <ion-label>Email:</ion-label>
+              <ion-input [(ngModel)]="email" type="text"></ion-input>
             </ion-item>
 
             <ion-item>
               <ion-input label="Telefono" type="tel" placeholder="22-7721231"></ion-input>
             </ion-item>
           
+            <ion-list>
+              <ion-item>
+                <ion-select (ionChange)="cargarComuna()" placeholder="Seleccione" [(ngModel)]="regionSel">
+                  <ion-select-option [value]="r.id" *ngFor="let r of regiones">{{r.nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+            
+            <ion-list>
+              <ion-item>
+                <ion-select  placeholder="Seleccione" [(ngModel)]="comunaSel">
+                  <ion-select-option [value]="r.id" *ngFor="let r of comunas">{{r.nombre}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-list>
+
+
         </ion-list>
       </ion-card-content>
     </ion-card>
   </ng-container>
+
+  
   <ion-row>
     <ion-col>
-      <ion-button expand="full">Registrarse</ion-button>
+      <ion-button (click)="registro()" expand="full">Registrarse</ion-button>
     </ion-col>
   </ion-row>
+
+
+
+  
 
 </ion-content>

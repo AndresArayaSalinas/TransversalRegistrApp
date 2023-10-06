@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationController, IonCard } from '@ionic/angular';
+import { HelperService } from 'src/app/services/helper.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-login',
@@ -13,35 +15,45 @@ export class LoginPage implements OnInit {
   password:string ="";
 
   constructor(private router:Router,
-              private animationCtrl: AnimationController
+              private animationCtrl: AnimationController,
+              private auth:AngularFireAuth,
+              private helperService:HelperService
               ) { }
 
   ngOnInit() {
   }
+  
+//usuario@usuario.cl
+//123123
 
-  logear(){
-    if(this.correito==""){
-      alert("Campo correo vacio. Debes ingresar un correo");
+  async logear(){
+    if (this.correito == "") {
+      //alert("Debe ingresar un email.");
+      this.helperService.showAlert("Debe ingresar un email", "Advertencia");
       return;
     }
-    if(this.password==""){
-      alert("Debes de ingresar una contraseña.")
+    if (this.password == "") {
+      alert("Debe ingresar una contraseña.")
       return;
     }
     
-    if(this.correito == "pgy4121-002d" && this.password=="pgy4121-002d"){
-      this.router.navigateByUrl("menu");
-    }else{
-      alert("Datos ingresados no validos.")
-    }
+    try {
+      const req = await this.auth.signInWithEmailAndPassword(this.correito,this.password);
+      console.log("TOKEN", await req.user?.getIdToken());
+      await this.router.navigateByUrl("menu");
+    } catch (error) {
+      
+    }    
   }
 
   registrarse(){
-    this.router.navigateByUrl("registro");
+    
+    this.router.navigateByUrl("/registro");
+
   }
 
   recuperar(){
-    this.router.navigateByUrl("recuperar");
+
   }
 
 }

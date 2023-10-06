@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard'
+
+const redirectToLogin = () => redirectUnauthorizedTo(['/login']);
+
 
 const routes: Routes = [
   {
@@ -21,6 +25,8 @@ const routes: Routes = [
   },
   {
     path: 'menu',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/menu/menu.module').then( m => m.MenuPageModule)
   },
   {
@@ -29,10 +35,14 @@ const routes: Routes = [
   },
   {
     path: 'captura-qr',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/captura-qr/captura-qr.module').then( m => m.CapturaQrPageModule)
   },
   {
     path: 'asistencia',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
   },
   {
@@ -41,10 +51,14 @@ const routes: Routes = [
   },
   {
     path: 'registro-asistencia',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
   },
   {
     path: 'perfil',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
   {
@@ -53,6 +67,8 @@ const routes: Routes = [
   },
   {
     path: ':num/asistencia',
+    canActivate:[AngularFireAuthGuard],
+    data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
   },
   
