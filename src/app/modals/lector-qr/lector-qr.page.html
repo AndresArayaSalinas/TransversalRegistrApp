@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon (click)="close()" style="font-size: 25px;" slot="end" name="close-outline"></ion-icon>
+    <ion-title>lector-qr</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">lector-qr</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-card>
+    <h3>Docente: {{datoAsistencia.docente}}</h3>
+    <h3>Asignatura: {{datoAsistencia.asignatura}}</h3>
+    <h3>Lección: {{datoAsistencia.leccion}}</h3>
+    <h3>Seccion: {{datoAsistencia.seccion}}</h3>
+    <h3>Sala: {{datoAsistencia.sala}}</h3>
+    <h3>Hora: {{datoAsistencia.hora}}</h3>
+    <h3>Fecha: {{datoAsistencia.fecha}}</h3>
+  </ion-card>
+  <ion-button (onclick)="registrarAsistencia()">Guardar</ion-button>
+</ion-content>

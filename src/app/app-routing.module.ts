@@ -67,7 +67,11 @@ const routes: Routes = [
     canActivate:[AngularFireAuthGuard],
     data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
+  },  {
+    path: 'lector-qr',
+    loadChildren: () => import('./modals/lector-qr/lector-qr.module').then( m => m.LectorQrPageModule)
   },
+
   
 
 ];
