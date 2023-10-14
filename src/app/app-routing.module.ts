@@ -61,10 +61,7 @@ const routes: Routes = [
     data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
-  {
-    path: 'recuperar-contrasena',
-    loadChildren: () => import('./pages/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
-  },
+
   {
     path: ':num/asistencia',
     canActivate:[AngularFireAuthGuard],

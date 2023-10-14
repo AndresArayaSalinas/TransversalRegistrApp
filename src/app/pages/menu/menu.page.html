@@ -17,9 +17,9 @@
   
   </div>
 
-  <ion-card >
+  <ion-card  >
     <ion-card-header>
-      <ion-card-title><h4>Bienvenido (Usuario) al Menu Principal.</h4></ion-card-title>
+      <ion-card-title *ngFor="let i of usuario"><h4>Bienvenido {{i.nombre}} al Menu Principal.</h4></ion-card-title>
       
     </ion-card-header>
   

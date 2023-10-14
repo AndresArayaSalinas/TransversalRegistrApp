@@ -18,17 +18,21 @@
 
 <ng-container>
   <div class="cardPerfil">
-    <ion-card>
+    <ion-card *ngFor="let i of usuario">
       <ion-title>
-        Bienvenido (Usuario)
+        Bienvenido {{nombreUsuario}}
       </ion-title>
       
-        <ion-input disabled="true" class="info" placeholder=" Armando">
-          Nombre: 
+        <ion-input disabled="true" class="info" >
+          Nombre: {{i.nombre}}
         </ion-input>
 
-        <ion-input disabled="true" class="info"  placeholder=" Casas">
-          Apellido: 
+        <ion-input disabled="true" class="info">
+          Apellido Paterno:{{i.apellidoPaterno}} 
+        </ion-input>
+
+        <ion-input disabled="true" class="info">
+          Apellido Materno:{{i.apellidoMaterno}} 
         </ion-input>
 
         <ion-input disabled="true" class="info"  placeholder=" Estudiante">
