@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registrar Asistencia</ion-title>
+    <ion-title> Asistencia</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -25,27 +25,18 @@
     </ng-container>
 
   <ion-card>
-    <ion-card-content>
-      <ion-label>Nombre:</ion-label>
-      <ion-input type="text"></ion-input>
-      <ion-label>Apellido:</ion-label>
-      <ion-input type="text"></ion-input>
-      <ion-label>Asignatura:</ion-label>
-      <ion-input type="text"></ion-input>
-      <ion-label>Correo:</ion-label>
-      <ion-input type="text"></ion-input>
-      <ion-label>Fecha:</ion-label>
-      <ion-input type="date"></ion-input>
+    <ion-list>
+      <ion-item *ngFor="let asistencia of arrayAsistencia">
+        <ion-label>
+          <h2>{{ asistencia.asignatura }} - {{ asistencia.leccion }}</h2>
+          <p>Fecha: {{ asistencia.fecha }} - Hora: {{ asistencia.hora }}</p>
+          <p>Docente: {{ asistencia.docente }}</p>
+          <p>Sala: {{ asistencia.sala }}</p>
+          <p>Sección: {{ asistencia.seccion }}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
     
-
-
-      
-    </ion-card-content>
     </ion-card>
-    <ion-row>
-      <ion-col>
-        <ion-button (click)="menu()" >Guardar</ion-button>
-        <ion-button (click)="menu()" >Cancelar</ion-button>
-      </ion-col>
-    </ion-row>
+    
 </ion-content>

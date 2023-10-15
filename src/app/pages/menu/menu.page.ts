@@ -5,7 +5,7 @@ import { AnimationController, IonCard } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
 import { Menu } from 'src/app/models/menu';
 import { HelperService } from 'src/app/services/helper.service';
-import { RegistroAsistenciaPage } from '../registro-asistencia/registro-asistencia.page';
+import { AsistenciaPage } from '../asistencia/asistencia.page'; 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 
@@ -43,7 +43,7 @@ export class MenuPage implements OnInit {
           id:2,
           titulo:"Mi Asistencia",
           icono:"calendar-outline",
-          url:"/registro-asistencia"
+          url:"/asistencia"
         },
         {
           id:3,

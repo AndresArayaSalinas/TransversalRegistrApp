@@ -49,12 +49,7 @@ const routes: Routes = [
     path: 'restablecer',
     loadChildren: () => import('./pages/restablecer/restablecer.module').then( m => m.RestablecerPageModule)
   },
-  {
-    path: 'registro-asistencia',
-    canActivate:[AngularFireAuthGuard],
-    data:{ authGuardPipe : redirectToLogin },
-    loadChildren: () => import('./pages/registro-asistencia/registro-asistencia.module').then( m => m.RegistroAsistenciaPageModule)
-  },
+
   {
     path: 'perfil',
     canActivate:[AngularFireAuthGuard],
@@ -67,7 +62,8 @@ const routes: Routes = [
     canActivate:[AngularFireAuthGuard],
     data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/asistencia/asistencia-routing.module').then( m => m.AsistenciaPageRoutingModule)
-  },  {
+  },
+  {
     path: 'lector-qr',
     loadChildren: () => import('./modals/lector-qr/lector-qr.module').then( m => m.LectorQrPageModule)
   },

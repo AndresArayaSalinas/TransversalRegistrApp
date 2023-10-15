@@ -35,6 +35,7 @@ async cargarUsuario(){
   console.log("PROPIEDAD SERVICE STORAGE",this.storage.usuarioCorreo);
 
   var user = await this.auth.currentUser;
+  console.log("usuario actual: ",user?.email);  
 
   this.usuario = (await this.storage.obtenerUsuario()).filter(e => e.email == user?.email);
   this.nombreUsuario =  this.usuario[0].nombre;
