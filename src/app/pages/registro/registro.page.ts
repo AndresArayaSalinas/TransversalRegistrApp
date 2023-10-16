@@ -90,12 +90,19 @@ export class RegistroPage implements OnInit {
 
       await this.router.navigateByUrl('login');
       await loader.dismiss();
-      await this.helper.showAlert("Usuario registrado correctamente", "Información");
+      this.helper.showToast("El Usuario fue registrado correctamente", 3000);
+      
 
     } catch (error:any) {
-      if (error.code == 'auth/invalid-email') {
-        await this.helper.showAlert("El formato del correo no es valido.","Error de validación");
-        await loader.dismiss();
+      await loader.dismiss();
+      if (error.code == 'auth/email-already-in-use') {
+        await this.helper.showAlert("El correo ingresado ya se encuentra en uso","Información");
+      }else if (error.code == "auth/invalid-email") {
+        await this.helper.showAlert("El correo ingresado no es válido","Información");
+      }else if (error.code == "auth/missing-password") {
+        await this.helper.showAlert("El campo contraseña no puede estar vacio","Información");
+      }else if(error.code == "auth/weak-password"){
+        await this.helper.showAlert("La contraseña debe tener al menos 6 caracteres","Información");
       }
     }
   }

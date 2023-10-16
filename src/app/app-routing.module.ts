@@ -51,7 +51,7 @@ const routes: Routes = [
   },
 
   {
-    path: 'perfil',
+    path: 'perfil/:nombreUsuario',
     canActivate:[AngularFireAuthGuard],
     data:{ authGuardPipe : redirectToLogin },
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
@@ -65,6 +65,7 @@ const routes: Routes = [
   },
   {
     path: 'lector-qr',
+    canActivate:[AngularFireAuthGuard],
     loadChildren: () => import('./modals/lector-qr/lector-qr.module').then( m => m.LectorQrPageModule)
   },
 

@@ -23,34 +23,51 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
   
-//usuario@usuario.cl
-//123123
 
-async logear(){
-  if (this.correito == "") {
-    //alert("Debe ingresar un email.");
-    this.helperService.showAlert("Debe ingresar un email", "Advertencia");
-    return;
-  }
-  if (this.password == "") {
-    alert("Debe ingresar una contraseña.")
-    return;
+
+  async logear(){
+    if (this.password == "" && this.correito == "") {
+      this.helperService.showAlert("Campos vacíos", "Advertencia");
+      return;
+    }
+    if (this.correito == "") {
+      this.helperService.showAlert("Debe ingresar un email", "Advertencia");
+      return;
+    }
+    if (this.password == "") {
+      this.helperService.showAlert("Debe ingresar una contraseña", "Advertencia");
+      return;
+    }
+  
+    const loader = await this.helperService.showLoader("Cargando...");
+  
+    try {
+      const req = await this.auth.signInWithEmailAndPassword(this.correito, this.password);
+      console.log("TOKEN", await req.user?.getIdToken());
+      await loader.dismiss(); // Cerramos el loader antes de cambiar de vista.
+      await this.router.navigateByUrl("menu");
+      this.helperService.showToast("Sesión iniciada correctamente!", 3000);
+    } catch (error:any) {
+      if (error.code == "auth/invalid-email") {
+        this.helperService.showAlert("El correo no es válido.", "Advertencia");
+      } else if (error.code == "auth/missing-password") {
+        this.helperService.showAlert("Campo de contraseña vacío.", "Advertencia");
+      } else if (error.code == "auth/user-not-found") {
+        this.helperService.showAlert("El usuario ingresado no está registrado.", "Advertencia");
+      }else if (error.code == "auth/wrong-password") {
+        this.helperService.showAlert("La clave ingresada no es correcta.", "Advertencia");
+      }
+       else {
+        
+        // otros errores que  no estana arriba
+        this.helperService.showAlert("Error al iniciar sesión", "Por favor, intente nuevamente más tarde.");
+      }
+    } finally {
+      // Asegurarse de que el loader siempre se cierre
+      loader.dismiss();
+    }
   }
   
-  try {
-    const req = await this.auth.signInWithEmailAndPassword(this.correito,this.password);
-    console.log("TOKEN", await req.user?.getIdToken());
-    await this.router.navigateByUrl("menu");
-    this.helperService.showToast("Sesión iniciada correctamente!", 3000);
-  } catch (error:any) {
-    if(error.code == 'auth/wrong-password'){
-      this.helperService.showAlert("Contraseña incorrecta, inténtelo nuevamente.", "Oh no!");
-    }
-   
-    
-    
-  }    
-}
 
   registrarse(){
     

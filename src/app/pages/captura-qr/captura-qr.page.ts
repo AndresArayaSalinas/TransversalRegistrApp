@@ -24,6 +24,9 @@ export class CapturaQrPage {
   }
 
   async scan() {
+    // Muestra el loader
+    const loader = await this.helper.showLoader("Cargando...");
+  
     try {
       this.lectorQr = (await BarcodeScanner.scan()).code;
   
@@ -33,19 +36,40 @@ export class CapturaQrPage {
       // Obtenemos el array actual de datos desde localStorage
       const datosActuales: any[] = JSON.parse(localStorage.getItem('datosQRArray') || '[]');
       
-      // Agregamos el nuevo dato al array
-      datosActuales.push(objetoJSON);
+      // Verificamos si el objeto ya existe en el array basándonos en el campo `asignatura`
+      const yaExiste = datosActuales.some(dato => dato.asignatura === objetoJSON.asignatura);
       
-      // Guardamos el array actualizado en localStorage
-      localStorage.setItem('datosQRArray', JSON.stringify(datosActuales));
-  
+      if (yaExiste) {
+          // Mostramos una alerta indicando que el QR ya ha sido agregado.
+          this.helper.showAlert("Información duplicada", "No puedes registrar la misma asignatura.");
+      } else {
+        // Si no existe, agregamos el nuevo dato al array
+        datosActuales.push(objetoJSON);
+        
+        // Guardamos el array actualizado en localStorage
+        localStorage.setItem('datosQRArray', JSON.stringify(datosActuales));
+      }
+
+      // Si no ocurren errores hasta aquí, cierra el loader
+      loader.dismiss();
+
       console.log("obj QR", objetoJSON);
       await this.modalResultQr();
-  
+    
     } catch (error) {
-      console.error('Error al escanear o procesar el QR:', error);
+      // Si hay un error, también cierra el loader
+      loader.dismiss();
+  
+      // Si el error es al parsear el JSON, muestra un mensaje específico
+      if (error instanceof Error) {
+        this.helper.showAlert("Error al escanear o procesar el QR", error.message);
+      } else {
+        this.helper.showAlert("Error al escanear o procesar el QR", "Ocurrió un error desconocido");
+      }
     }
-  }
+}
+
+
   
   async modalResultQr(){
     var qr = [];
