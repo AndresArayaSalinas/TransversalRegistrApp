@@ -18,11 +18,10 @@
   </div>
 
   <ion-card  >
-    <ion-card-header>
+    
       <ion-card-title *ngFor="let i of usuario"><h4>Bienvenido {{i.nombre}} al Menu Principal.</h4></ion-card-title>
       
-    </ion-card-header>
-  
+    
     <ng-container *ngIf="!loading">
       <ng-container *ngFor="let menu of arrayMenu">
         <ion-card (click)="stop()"  class="menuEnabled" [routerLink]="menu.url" *ngIf="!menu.disabled">
@@ -54,5 +53,10 @@
           <ion-card id="menuEnabled" button="true">
             <ion-card-content  (click)="play()"><p>Modo Fiesta</p></ion-card-content>
           </ion-card>
+        </div>
+        <div>
+          <ion-button (click)="cargarInfo()">
+            Información de el dispositivo
+          </ion-button>
         </div>
       </div>

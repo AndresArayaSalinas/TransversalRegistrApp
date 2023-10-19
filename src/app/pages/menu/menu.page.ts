@@ -134,6 +134,10 @@ export class MenuPage implements OnInit {
     this.nombreUsuario =  this.usuario[0].nombre;
     
   }
+
+  cargarInfo(){
+    this.router.navigateByUrl("info")
+  }
   
 
 }
