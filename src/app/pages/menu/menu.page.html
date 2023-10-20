@@ -17,7 +17,7 @@
   
   </div>
 
-  <ion-card  >
+  <ion-card>
     
       <ion-card-title *ngFor="let i of usuario"><h4>Bienvenido {{i.nombre}} al Menu Principal.</h4></ion-card-title>
       
@@ -46,7 +46,7 @@
           <ion-skeleton-text [animated]="true" class="skeleton"></ion-skeleton-text>
         </div>
       </ng-container>
-
+</ion-card> 
 
       <div class="contenedor">
         <div class="track">
@@ -54,9 +54,13 @@
             <ion-card-content  (click)="play()"><p>Modo Fiesta</p></ion-card-content>
           </ion-card>
         </div>
-        <div>
-          <ion-button (click)="cargarInfo()">
-            Información de el dispositivo
-          </ion-button>
-        </div>
       </div>
+
+
+  <ion-button id="btnInfo" color="danger" (click)="cargarInfo()">
+    Información dispositivo
+  </ion-button>
+
+      
+        
+       

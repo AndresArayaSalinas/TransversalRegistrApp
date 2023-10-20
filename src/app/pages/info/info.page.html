@@ -1,28 +1,20 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Información</ion-title>
+    <ion-back-button></ion-back-button>
   </ion-toolbar>
-  <ion-back-button></ion-back-button>
+  
 </ion-header>
+<ion-content>
+  
+  <ion-button color="warning" id="btnInfo" (click)="getDeviceInfo()">Dispositivo.</ion-button>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Información del Dispositivo.</ion-title>
-    </ion-toolbar>
-    <ion-item>
-      <ion-button (click)="getDeviceInfo()"> Dispositivo
-
-      </ion-button>
-    </ion-item>
-    <ion-list>
-      
-        <div *ngIf="deviceInfoJson">
-          <pre style="height: 200px; overflow: auto">
-          {{deviceInfoJson}}
-        </pre>
-        </div>
-      
-    </ion-list>
-  </ion-header>
 </ion-content>
+    
+
+
+<div *ngIf="deviceInfoJson">
+  <pre style="height: 200px; overflow: auto">
+  {{deviceInfoJson}}
+</pre>
+</div>

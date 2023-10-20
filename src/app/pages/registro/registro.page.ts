@@ -72,6 +72,11 @@ export class RegistroPage implements OnInit {
 
 
   async registro(){
+    if (!this.nombre) {
+      
+      this.helper.showToastError("Por favor, ingrese un nombre.", 3000);
+      return; 
+    }
     const loader = await this.helper.showLoader("Cargando");
     try {
       const request = await this.auth.createUserWithEmailAndPassword(this.email,this.contrasena);
@@ -90,6 +95,8 @@ export class RegistroPage implements OnInit {
 
       await this.router.navigateByUrl('login');
       await loader.dismiss();
+     
+      
       this.helper.showToast("El Usuario fue registrado correctamente", 3000);
       
 

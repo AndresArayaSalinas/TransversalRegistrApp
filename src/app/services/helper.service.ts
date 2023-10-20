@@ -64,6 +64,21 @@ export class HelperService {
       return toast;
   }
 
+  async showToastError(msg:string,duracion:number = 3000){
+    var toast = await this.toastController.create(
+      {
+        cssClass:"cssToast",
+        message:msg,
+        translucent:true,
+        position:"bottom",
+        duration:duracion,
+        color:"danger"
+      }
+      );
+      await toast.present();
+      return toast;
+  }
+
   async showModal(component:any,props:any = {},hideable = false){
     var modal = await this.modalController.create
     (
