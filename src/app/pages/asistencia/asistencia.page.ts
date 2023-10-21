@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { DatosQR } from 'src/app/models/datosQr';
+import { Asistencia } from 'src/app/models/asistencia';
+import { AsistenciaStorageService } from 'src/app/services/asistencia-storage.service';
+
 
 
 @Component({
@@ -10,7 +14,11 @@ import { DatosQR } from 'src/app/models/datosQr';
 })
 export class AsistenciaPage implements OnInit {
   arrayAsistencia: DatosQR[] = [];
-  constructor(private router:Router) { }
+  asistencias : any;
+  
+  constructor(private router:Router,
+              private asistenciaStorage:AsistenciaStorageService,
+              private auth:AngularFireAuth) { }
   ngOnInit() {
     this.cargarAsistencia();
   }
@@ -20,14 +28,16 @@ export class AsistenciaPage implements OnInit {
     this.router.navigateByUrl("menu");
   }
 
-  cargarAsistencia() {
-    const datosActuales: DatosQR[] = JSON.parse(localStorage.getItem('datosQRArray') || '[]');
-    
-    if (datosActuales.length > 0) {
-      this.arrayAsistencia = datosActuales;
-    } else {
-      console.error("No se encontraron datos en localStorage");
+  async cargarAsistencia() {
+    try {
+        this.arrayAsistencia = await this.asistenciaStorage.obtenerAsistencias();
+
+        console.log('Asistencias cargadas:', this.arrayAsistencia);
+    } catch (error) {
+        console.error('Error al cargar las asistencias:', error);
     }
-  }
+}
+
+  
   
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { Region } from 'src/app/models/region';
+import { Comunas } from 'src/app/models/comunas';
 import { Usuario } from 'src/app/models/usuario';
 import { HelperService } from 'src/app/services/helper.service';
 import { LocationService } from 'src/app/services/location.service';
@@ -19,12 +20,13 @@ export class RegistroPage implements OnInit {
   apellidoMaterno:string = "";
   contrasena:string = "";
   email:string = "";
-  telefono:number = 0;
-
+  telefono:string = "";
   regiones:Region[]=[];
-  comunas:any[]=[];
   regionSel:number = 0;
+  regionSelNomb:string="";
+  comunas:Comunas[]=[]
   comunaSel:number = 0;
+  comunaSelNomb:string="";
   loading:boolean = true;
 
   
@@ -79,7 +81,10 @@ export class RegistroPage implements OnInit {
     }
     const loader = await this.helper.showLoader("Cargando");
     try {
+      
       const request = await this.auth.createUserWithEmailAndPassword(this.email,this.contrasena);
+      this.comunaSelNomb = this.comunas.filter(e => e.id == this.comunaSel)[0].nombre;
+      this.regionSelNomb = this.regiones.filter(e => e.id == this.regionSel)[0].nombre;
       var user = 
       [
         {
@@ -87,10 +92,12 @@ export class RegistroPage implements OnInit {
           apellidoPaterno:this.apellidoPaterno,
           apellidoMaterno:this.apellidoMaterno,
           email:this.email,
-          telefono:this.telefono
+          telefono:this.telefono,
+          comuna:this.comunaSelNomb,
+          region:this.regionSelNomb
 
         }
-    ]
+    ];
       this.storageService.guardarUsuario(user);
 
       await this.router.navigateByUrl('login');

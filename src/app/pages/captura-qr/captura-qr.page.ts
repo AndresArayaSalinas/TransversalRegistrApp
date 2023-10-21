@@ -4,6 +4,8 @@ import { AnimationController, IonCard } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/helper.service';
 import { LectorQrPage } from 'src/app/modals/lector-qr/lector-qr.page';
+import { AsistenciaStorageService } from 'src/app/services/asistencia-storage.service';
+import { Asistencia } from 'src/app/models/asistencia';
 
 @Component({
   selector: 'app-captura-qr',
@@ -16,58 +18,57 @@ export class CapturaQrPage {
 
   constructor(private animationCtrl: AnimationController,
               private router: Router,
-              private helper: HelperService) {}
+              private helper: HelperService,
+              private asistenciaStorageService: AsistenciaStorageService) {}
 
   aceptarQr(){
     var parametroQR = "QR123456";
     this.router.navigateByUrl(parametroQR + "/asistencia");
   }
-
+ 
   async scan() {
-    // Muestra el loader
-    const loader = await this.helper.showLoader("Cargando...");
-  
+    // sale el loader
+    const loader = await this.helper.showLoader("Procesando...");
+
     try {
-      this.lectorQr = (await BarcodeScanner.scan()).code;
-  
-      // Parseamos el contenido del QR
-      const objetoJSON = JSON.parse(this.lectorQr);
-  
-      // Obtenemos el array actual de datos desde localStorage
-      const datosActuales: any[] = JSON.parse(localStorage.getItem('datosQRArray') || '[]');
-      
-      // Verificamos si el objeto ya existe en el array basándonos en el campo `asignatura`
-      const yaExiste = datosActuales.some(dato => dato.asignatura === objetoJSON.asignatura);
-      
-      if (yaExiste) {
-          // Mostramos una alerta indicando que el QR ya ha sido agregado.
-          this.helper.showAlert("Información duplicada", "No puedes registrar la misma asignatura.");
-      } else {
-        // Si no existe, agregamos el nuevo dato al array
-        datosActuales.push(objetoJSON);
+        this.lectorQr = (await BarcodeScanner.scan()).code;
+
+        // Convertimos el contenido del codigo qr en un objeto
+        const asistenciaObjeto: Asistencia = JSON.parse(this.lectorQr);
         
-        // Guardamos el array actualizado en localStorage
-        localStorage.setItem('datosQRArray', JSON.stringify(datosActuales));
-      }
+        // se intenta guardar el objeto de asistencia
+        const seGuardo = await this.asistenciaStorageService.guardarAsistencia(asistenciaObjeto);
 
-      // Si no ocurren errores hasta aquí, cierra el loader
-      loader.dismiss();
+        // Cierra el loader
+        loader.dismiss();
 
-      console.log("obj QR", objetoJSON);
-      await this.modalResultQr();
-    
+        if (!seGuardo) {
+            // Si la asistencia ya existe, muestra una alerta
+            this.helper.showAlert("Información duplicada", "Ya has registrado esta asistencia.");
+            return;
+        } 
+
+        // sale una alerta indicando se guardo
+        this.helper.showAlert("Éxito", "Asistencia registrada correctamente.");
+
+        // Si no ocurren errores hasta aca se  muestra el modal
+        await this.modalResultQr();
+
     } catch (error) {
-      // Si hay un error, también cierra el loader
-      loader.dismiss();
-  
-      // Si el error es al parsear el JSON, muestra un mensaje específico
-      if (error instanceof Error) {
-        this.helper.showAlert("Error al escanear o procesar el QR", error.message);
-      } else {
-        this.helper.showAlert("Error al escanear o procesar el QR", "Ocurrió un error desconocido");
-      }
+        // se ccierra el loader en caso de error
+        loader.dismiss();
+
+        if (error instanceof SyntaxError) {
+            this.helper.showAlert("Error", "El contenido del QR no es válido.");
+        } else {
+            this.helper.showAlert("Error", "Ocurrió un error al procesar el QR.");
+        }
+        console.error("Error al escanear o procesar el QR:", error);
     }
 }
+
+
+
 
 
   

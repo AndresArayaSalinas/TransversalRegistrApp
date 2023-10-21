@@ -3,7 +3,9 @@ export interface Usuario{
         apellidoPaterno:string;
         apellidoMaterno:string;
         email:string;
-        telefono:number;
+        telefono:string;
+        comuna:string;
+        region:string;
 
 
 
