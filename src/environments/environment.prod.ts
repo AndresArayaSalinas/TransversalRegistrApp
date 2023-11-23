@@ -7,6 +7,8 @@ export const environment = {
     storageBucket: "pgy4121-araya.appspot.com",
     messagingSenderId: "667084596317",
     appId: "1:667084596317:web:5977b77a83de8855f8d9b4"
-  }
+  },
+  apiUrl:"https://dev.matiivilla.cl/duoc/location/"
+
   
 };

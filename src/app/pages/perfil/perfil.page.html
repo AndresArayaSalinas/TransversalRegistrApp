@@ -17,11 +17,14 @@
 </ng-container>
 
 <ng-container>
+  <div class="nombreUsuario">
+  <h1 *ngFor="let i of usuario">
+    Bienvenido {{nombreUsuario}}
+  </h1>
+</div>
   <div class="cardPerfil">
     <ion-card *ngFor="let i of usuario">
-      <ion-title>
-        Bienvenido {{nombreUsuario}}
-      </ion-title>
+      
       
         <ion-input disabled="true" class="info" >
           Nombre: {{i.nombre}}

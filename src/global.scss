@@ -24,3 +24,102 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+
+@font-face {
+    font-family: titulo;
+    src: url("/assets/fonts/CheeseDonuts.otf");
+}
+
+@font-face {
+  font-family: HandMade;
+  src: url("/assets/fonts/Handmade.otf");
+}
+
+
+ion-content{
+    --background:#e5e5e5;
+    font-family: 'HandMade';
+    
+}
+
+/* Estilos para el encabezado */
+ion-header {
+  ion-toolbar {
+    --background: #323031; /* Color de fondo del encabezado */
+    color: #fff; /* Color del texto en el encabezado */
+    
+  }
+  ion-title {
+    font-size: 24px; /* Tamaño de fuente del título */
+    font-family: 'titulo';
+    font-size: 35px;
+  }
+}
+
+/* Estilos para el contenido */
+
+
+  ion-button {
+    --background: #eddea4;
+    --background-hover: rgb(231, 189, 20);
+    --background-activated: #e6bd1b;
+    --background-focused: #eddea4;
+  
+    --color: #323031; /* Color de texto predeterminado */
+  
+    /* Ajustar el color del texto en función del fondo */
+    mix-blend-mode: difference;
+  
+    --border-radius: 0;
+    
+  
+    --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.25);
+  
+    --ripple-color: rgb(236, 170, 15);
+  
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+  }
+  ion-button.no-border {
+    --background: transparent; /* Fondo transparente */
+    --border: none; /* Sin borde */
+    --color: #eddea4; /* Color del texto (ajusta según tu preferencia) */
+  }
+
+  ion-back-button{
+    color: #e6bd1b;
+  }
+
+
+  
+    ion-card {
+        
+        --background: #323031;
+        
+      ion-card-content {
+        ion-item {
+            --background: #323031;
+          ion-label {
+            color: #eddea4; /* Color del texto de las etiquetas */
+          }
+         
+        }
+      }
+
+      ion-row {
+        
+        ion-col {
+            
+          ion-button {
+            margin-top: 10px; /* Margen superior entre los botones */
+            
+            
+            
+          }
+        }
+      }
+    }
+  
+
