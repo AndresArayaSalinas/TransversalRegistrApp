@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularDelegate, IonicModule, ModalController } from '@ionic/angular';
-import { environment } from 'src/environments/environment'; // Ajusta la ruta según tu estructura de carpetas
+import { environment } from 'src/environments/environment';
 import { MenuPage } from './menu.page';
 
 describe('MenuPage', () => {
@@ -14,7 +14,7 @@ describe('MenuPage', () => {
       declarations: [MenuPage],
       imports: [
         IonicModule.forRoot(),
-        AngularFireModule.initializeApp(environment.firebaseConfig), // Ajusta la configuración según tu entorno
+        AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
       ],
       providers: [ModalController, AngularDelegate],
@@ -27,5 +27,12 @@ describe('MenuPage', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('Deberia de existir el titulo en el menu', () => {
+    fixture.detectChanges();
+
+    const titleElement: HTMLElement = fixture.nativeElement.querySelector('ion-title');
+    expect(titleElement).toBeTruthy(); 
   });
 });
