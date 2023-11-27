@@ -1,0 +1,38 @@
+@font-face{
+    font-family: miFuente;
+    src: url("fonts/King_Education_Center.ttf");
+}
+
+
+h1{
+    font-family: miFuente;
+}
+
+
+.contHeader{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(5,5,13);
+    background: linear-gradient(190deg, rgba(5,5,13,1) 0%, rgba(27,0,255,1) 100%);
+    color: white;
+    font-family: miFuente;
+    font-size: 150%;
+    
+
+}
+
+#imgCard{
+display: flex;
+margin: auto;
+width: 50%;
+height: 50%;
+margin-top: 5%;
+margin-bottom: 10%;
+}
+
+body{
+    background: rgb(255,148,2);
+    background: linear-gradient(180deg, rgba(255,148,2,1) 0%, rgba(249,219,146,1) 100%);
+    margin:0;
+}
