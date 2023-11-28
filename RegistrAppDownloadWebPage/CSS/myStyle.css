@@ -32,7 +32,7 @@ margin-bottom: 10%;
 }
 
 body{
-    background: rgb(255,148,2);
+  
     background: linear-gradient(180deg, rgba(255,148,2,1) 0%, rgba(249,219,146,1) 100%);
     margin:0;
 }
